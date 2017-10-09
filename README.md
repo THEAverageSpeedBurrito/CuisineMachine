@@ -1,8 +1,6 @@
-#Cuisine Machine
+# Cuisine Machine
 --
-Cuisine machine is a web application that is designed to facilitate the process of choosing a place to eat with a group of friends. The basic idea is to use a system reminiscent of Tinder with cards representing the possible choices in their area. The original user should create a group, specify the location to search within, and then send a link out to their friends who can go through the selection process and either like or dislike restaurant options. Once all users are finished, their inputs are compared and a restaurant is selected that most accurately fits the combined input of all the users.
- 
--- 
+Cuisine machine is a web application that is designed to facilitate the process of choosing a place to eat with a group of friends. The basic idea is to use a system reminiscent of Tinder with cards representing the possible choices in their area. The original user should create a group, specify the location to search within, and then send a link out to their friends who can go through the selection process and either like or dislike restaurant options. Once all users are finished, their inputs are compared and a restaurant is selected that most accurately fits the combined input of all the users. 
 
 ## Technologies
 #### Front end
