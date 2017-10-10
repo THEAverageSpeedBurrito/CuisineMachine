@@ -2,6 +2,13 @@ import React, {Component} from 'react'
 
 // Material UI components
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import {
+  Step,
+  Stepper,
+  StepLabel,
+  StepContent,
+} from 'material-ui/Stepper';
 
 var style = {
   main_form: {
@@ -32,6 +39,14 @@ var style = {
     fontSize: '10px',
     marginTop: '-5px',
     textAlign: 'center'
+  },
+  cuisine_style: {
+    width: '100%',
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  c_option: {
+    display: 'inline'
   }
 }
 
@@ -39,11 +54,11 @@ class GroupForm extends Component {
   render() {
     return (
       <div style={style.main_form}>
-      <p>We need a little information about you to get started.</p>
-      <p>Information is only stored as long as your group is active. Once you reach a decision all the information is deleted.</p>
+        <p>We need a little information about you to get started.</p>
+        <p>Information is only stored as long as your group is active. Once you reach a decision all the information is deleted.</p>
         <div style={style.form_section}>
           <p style={style.section_header}>Basic Information</p>
-          <p style={style.subtext}>Name is required. Input either email or phone number.</p>
+          <p style={style.subtext}>Name is required. Either email or phone number is required.</p>
           <TextField
             style={style.input}
             hintText="Name"
@@ -59,8 +74,10 @@ class GroupForm extends Component {
             hintText="Phone"
             fullWidth={true}
           />
-          <p style={style.section_header}>Cuisine Information</p>
-          <p style={style.subtext}>What type of food are you looing for.</p>
+          <p style={style.section_header}>Restaurant Options</p>
+          <div style={style.cuisine_type}>
+
+          </div>
         </div>
       </div>
     )
