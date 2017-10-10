@@ -15,12 +15,10 @@ var style = {
   main_form: {
     width: '100%',
     height: '100vh',
-    // boxShadow: '0 0 4px 0 rgba(0, 0, 0, 0.3)',
     padding: 5,
   },
   form_section: {
-    margin: '20px 0 0 0',
-
+    margin: '0 0 0 0',
   },
   input: {
     margin: 5,
@@ -28,16 +26,18 @@ var style = {
   section_header: {
     fontSize: 14,
     textAlign: 'center',
-    borderBottom: '1px solid lightgray',
     paddingBottom: 5,
-    margin: '10px 0 10px 0',
-    textTransform: 'capitalize'
+    margin: '0 0 0 0',
+    textTransform: 'capitalize',
+    textAlign: 'right'
   },
   subtext: {
     color: 'gray',
     fontSize: '10px',
-    marginTop: '-5px',
-    textAlign: 'center'
+    textAlign: 'right',
+    margin: '0',
+    padding: '0 0 5px 0',
+    borderBottom: '1px solid lightgray',
   },
   cuisine_style: {
     width: '100%',
@@ -53,17 +53,20 @@ class GroupForm extends Component {
 
   state = {
     finished: false,
-    stepIndex: 0
+    stepIndex: 0,
+    loc: undefined
   }
 
+  // handle next stepper
   handleNext = () => {
     var {stepIndex} = this.state
-
     this.setState({
       stepIndex: stepIndex + 1,
-      finished: stepIndex <= 2
+      finished: stepIndex <= 2,
+      loc: this.state.loc
     })
   }
+  // handle previous stepper
   handlePrev = () => {
     var {stepIndex} = this.state
     if(stepIndex > 0){
@@ -72,16 +75,24 @@ class GroupForm extends Component {
       })
     }
   }
+  // get geo location
+  getLoc = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        console.log(pos);
+      })
+    } else {
+      console.log('not getting location');
+    }
+  }
 
   renderStepActions(step) {
     const {stepIndex} = this.state;
 
     return (
-      <div style={{margin: '12px 0'}}>
+      <div style={{margin: '12px 0', padding: '10px 0 0 0', borderTop: '1px solid lightgray'}}>
         <RaisedButton
           label={stepIndex === 2 ? 'Finish' : 'Next'}
-          disableTouchRipple={true}
-          disableFocusRipple={true}
           primary={true}
           onClick={this.handleNext}
           style={{marginRight: 12}}
@@ -90,8 +101,6 @@ class GroupForm extends Component {
           <FlatButton
             label="Back"
             disabled={stepIndex === 0}
-            disableTouchRipple={true}
-            disableFocusRipple={true}
             onClick={this.handlePrev}
           />
         )}
@@ -134,7 +143,16 @@ class GroupForm extends Component {
           <Step>
             <StepLabel>Select cuisine options</StepLabel>
             <StepContent>
-              <p>An ad group contains one or more ads which target a shared set of keywords.</p>
+              <p style={style.section_header}>Set location</p>
+              <p style={style.subtext}>Click use my location or input a zip code.</p>
+              <div className="row">
+                <RaisedButton
+                  label="Use My Location"
+                  primary={true}
+                  onClick={this.getLoc}
+                  style={{width: '100%'}}
+                />
+              </div>
               {this.renderStepActions(1)}
             </StepContent>
           </Step>
