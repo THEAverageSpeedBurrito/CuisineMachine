@@ -14,11 +14,24 @@ var style = {
     margin: '20px 0 0 0',
     borderTop: '2px solid #9756A2',
     paddingTop: 10,
-    
+
   },
   input: {
     margin: 5,
-
+  },
+  section_header: {
+    fontSize: 14,
+    textAlign: 'center',
+    borderBottom: '1px solid lightgray',
+    paddingBottom: 5,
+    margin: '10px 0 10px 0',
+    textTransform: 'capitalize'
+  },
+  subtext: {
+    color: 'gray',
+    fontSize: '10px',
+    marginTop: '-5px',
+    textAlign: 'center'
   }
 }
 
@@ -29,6 +42,8 @@ class GroupForm extends Component {
       <p>We need a little information about you to get started.</p>
       <p>Information is only stored as long as your group is active. Once you reach a decision all the information is deleted.</p>
         <div style={style.form_section}>
+          <p style={style.section_header}>Basic Information</p>
+          <p style={style.subtext}>Name is required. Input either email or phone number.</p>
           <TextField
             style={style.input}
             hintText="Name"
@@ -43,7 +58,9 @@ class GroupForm extends Component {
             style={style.input}
             hintText="Phone"
             fullWidth={true}
-        />
+          />
+          <p style={style.section_header}>Cuisine Information</p>
+          <p style={style.subtext}>What type of food are you looing for.</p>
         </div>
       </div>
     )
