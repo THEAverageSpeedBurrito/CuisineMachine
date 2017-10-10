@@ -3,12 +3,9 @@ import React, {Component} from 'react'
 // material UI components
 import AppBar from 'material-ui/AppBar'
 import RaisedButton from 'material-ui/RaisedButton'
+import {browserHistory} from 'react-router'
 
 var style = {
-  full: {
-    width: '100%',
-    height: '100%',
-  },
   hungry_people: {
     position: 'fixed',
     bottom: 0,
@@ -29,19 +26,18 @@ class Landing extends Component {
     super(props)
     this.state = {
       style: style,
-      saySomething: function () {
-        console.log('something');
+      getStarted: function () {
+        browserHistory.push('/newgroup')
       }
     }
   }
   render(){
     return (
-      <div style={style.full}>
+      <div className="full">
         <AppBar
           style={style.appBar}
           title="Cuisine Machine"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
-          onLeftIconButtonTouchTap={this.state.saySomething}
         />
         <img src="/assets/hungry_people.svg" alt="people" style={style.hungry_people}/>
         <div className="wrapper">
@@ -51,6 +47,7 @@ class Landing extends Component {
             <RaisedButton label="Get Started"
               overlayStyle={style.get_started}
               labelColor="white"
+              onClick={this.state.getStarted}
             />
           </center>
         </div>
