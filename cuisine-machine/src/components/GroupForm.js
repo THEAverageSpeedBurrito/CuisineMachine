@@ -55,8 +55,11 @@ class GroupForm extends Component {
 
   state = {
     finished: false,
-    stepIndex: 0,
-    loc: undefined
+    stepIndex: 1,
+    loc: {
+      lat: undefined,
+      lng: undefined
+    }
   }
 
   // handle next stepper
@@ -79,13 +82,22 @@ class GroupForm extends Component {
   }
   // get geo location
   getLoc = () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(function(pos) {
-        console.log(pos);
-      })
-    } else {
-      console.log('not getting location');
-    }
+    var coords = undefined
+
+    var promise = new Promise((resolve, reject) => {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+          coords = pos.coords
+          resolve(coords)
+        })
+      } else {
+        reject('geolocation not available')
+      }
+    })
+
+    promise.then((message) => {
+      console.log(message);
+    })
   }
 
   renderStepActions(step) {
@@ -153,7 +165,7 @@ class GroupForm extends Component {
                   onClick={this.getLoc}
                   style={{width: '100%'}}
                 />
-                <DisplayMap/>
+                <DisplayMap lat={this.state.loc.lat} lng={this.state.loc.lng} />
               </div>
               {this.renderStepActions(1)}
             </StepContent>

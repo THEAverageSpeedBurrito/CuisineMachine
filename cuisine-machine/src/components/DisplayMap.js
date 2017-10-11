@@ -9,18 +9,29 @@ GoogleMapsLoader.KEY = API_KEY
 
 var style = {
   mapBox: {
-    height: 150
+    height: 250,
+    borderRadius: '3px'
   }
 }
 
 class DisplayMap extends Component {
 
+  constructor(props) {
+    super(props)
+
+  }
+
   componentDidMount() {
+    let lat = parseInt(this.props.lat)
+    let lng = parseInt(this.props.lng)
+
     let el = document.getElementById('map')
     let options = {
-      center: {lat: -25.363, lng: 131.044},
-      zoom: 4
+      center: {lat: lat, lng: lng},
+      zoom: 4,
+      disableDefaultUI: true
     }
+
     GoogleMapsLoader.load(function(google) {
       new google.maps.Map(el, options);
     });
