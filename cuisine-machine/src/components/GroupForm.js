@@ -36,7 +36,7 @@ var style = {
   subtext: {
     color: 'gray',
     fontSize: '10px',
-    textAlign: 'right',
+    textAlign: 'left',
     margin: '0',
     padding: '0 0 5px 0',
     borderBottom: '1px solid lightgray',
@@ -97,7 +97,6 @@ class GroupForm extends Component {
 
     let master = this
     promise.then((message) => {
-      console.log(message);
       master.setState({
         loc: {
           lat: coords.latitude,
@@ -139,7 +138,6 @@ class GroupForm extends Component {
             <StepLabel>Create a new group</StepLabel>
             <StepContent>
               <div style={style.form_section}>
-                <p style={style.section_header}>Basic Information</p>
                 <p style={style.subtext}>Name is required. Either email or phone number is required.</p>
                 <TextField
                   style={style.input}
@@ -161,9 +159,8 @@ class GroupForm extends Component {
             </StepContent>
           </Step>
           <Step>
-            <StepLabel>Select cuisine options</StepLabel>
+            <StepLabel>Set location</StepLabel>
             <StepContent>
-              <p style={style.section_header}>Set location</p>
               <p style={style.subtext}>Click use my location or input a zip code.</p>
               <div className="row">
                 <RaisedButton
@@ -175,6 +172,13 @@ class GroupForm extends Component {
                 <DisplayMap lat={this.state.loc.lat} lng={this.state.loc.lng} />
               </div>
               {this.renderStepActions(1)}
+            </StepContent>
+          </Step>
+          <Step>
+            <StepLabel>Add options</StepLabel>
+            <StepContent>
+
+              {this.renderStepActions(2)}
             </StepContent>
           </Step>
         </Stepper>

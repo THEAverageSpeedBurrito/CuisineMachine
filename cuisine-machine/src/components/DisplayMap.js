@@ -10,7 +10,8 @@ GoogleMapsLoader.KEY = API_KEY
 var style = {
   mapBox: {
     height: 250,
-    borderRadius: '3px'
+    borderRadius: '3px',
+    marginTop: 10
   }
 }
 
@@ -22,7 +23,6 @@ class DisplayMap extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     this.setState({
       lat: nextProps.lat,
       lng: nextProps.lng
@@ -50,7 +50,6 @@ class DisplayMap extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state);
     this.renderMap()
   }
 
