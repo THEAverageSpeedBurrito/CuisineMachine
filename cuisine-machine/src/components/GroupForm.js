@@ -57,8 +57,8 @@ class GroupForm extends Component {
     finished: false,
     stepIndex: 1,
     loc: {
-      lat: undefined,
-      lng: undefined
+      lat: 51,
+      lng: -144
     }
   }
 
@@ -95,8 +95,15 @@ class GroupForm extends Component {
       }
     })
 
+    let master = this
     promise.then((message) => {
       console.log(message);
+      master.setState({
+        loc: {
+          lat: coords.latitude,
+          lng: coords.longitude
+        }
+      })
     })
   }
 

@@ -18,12 +18,20 @@ class DisplayMap extends Component {
 
   constructor(props) {
     super(props)
-
+    this.state = this.props
   }
 
-  componentDidMount() {
-    let lat = parseInt(this.props.lat)
-    let lng = parseInt(this.props.lng)
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    this.setState({
+      lat: nextProps.lat,
+      lng: nextProps.lng
+    })
+  }
+
+  renderMap = () => {
+    let lat = parseInt(this.state.lat)
+    let lng = parseInt(this.state.lng)
 
     let el = document.getElementById('map')
     let options = {
@@ -35,6 +43,14 @@ class DisplayMap extends Component {
     GoogleMapsLoader.load(function(google) {
       new google.maps.Map(el, options);
     });
+  }
+
+  componentDidMount() {
+    this.renderMap()
+  }
+
+  componentDidUpdate() {
+    this.renderMap()
   }
 
   render() {
