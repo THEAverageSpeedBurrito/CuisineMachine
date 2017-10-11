@@ -112,7 +112,6 @@ class GroupForm extends Component {
 
   render() {
     const {finished, stepIndex} = this.state;
-    console.log(finished, stepIndex);
 
     return (
       <div style={style.main_form}>
