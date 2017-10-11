@@ -21,7 +21,7 @@ class NewGroup extends Component {
          title="Cuisine Machine"
          iconClassNameRight="muidocs-icon-navigation-expand-more"
        />
-       <div className='wrapper'>
+       <div className='wrapper' style={{padding: 0}}>
         <GroupForm/>
        </div>
      </div>

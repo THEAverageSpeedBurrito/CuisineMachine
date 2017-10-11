@@ -11,6 +11,9 @@ import {
   StepContent,
 } from 'material-ui/Stepper';
 
+// React components
+import DisplayMap from './DisplayMap'
+
 var style = {
   main_form: {
     width: '100%',
@@ -25,7 +28,6 @@ var style = {
   },
   section_header: {
     fontSize: 14,
-    textAlign: 'center',
     paddingBottom: 5,
     margin: '0 0 0 0',
     textTransform: 'capitalize',
@@ -152,20 +154,9 @@ class GroupForm extends Component {
                   onClick={this.getLoc}
                   style={{width: '100%'}}
                 />
+                <DisplayMap/>
               </div>
               {this.renderStepActions(1)}
-            </StepContent>
-          </Step>
-          <Step>
-            <StepLabel>Invite people to join in</StepLabel>
-            <StepContent>
-              <p>
-                Try out different ad text to see what brings in the most customers,
-                and learn how to enhance your ads using features like ad extensions.
-                If you run into any problems with your ads, find out how to tell if
-                they're running and how to resolve approval issues.
-              </p>
-              {this.renderStepActions(2)}
             </StepContent>
           </Step>
         </Stepper>
