@@ -36,7 +36,7 @@ class DisplayMap extends Component {
     let el = document.getElementById('map')
     let options = {
       center: {lat: lat, lng: lng},
-      zoom: 4,
+      zoom: 11,
       disableDefaultUI: true
     }
 
@@ -50,6 +50,7 @@ class DisplayMap extends Component {
   }
 
   componentDidUpdate() {
+    console.log(this.state);
     this.renderMap()
   }
 
