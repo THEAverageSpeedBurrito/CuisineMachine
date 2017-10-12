@@ -10,6 +10,7 @@ import {
   StepLabel,
   StepContent,
 } from 'material-ui/Stepper';
+import Slider from 'material-ui/Slider';
 
 // React components
 import DisplayMap from './DisplayMap'
@@ -59,7 +60,8 @@ class GroupForm extends Component {
     loc: {
       lat: 51,
       lng: -144
-    }
+    },
+    radius: 1,
   }
 
   // handle next stepper
@@ -103,6 +105,12 @@ class GroupForm extends Component {
           lng: coords.longitude
         }
       })
+    })
+  }
+
+  changeRadius = (event, value) => {
+    this.setState({
+      radius: value
     })
   }
 
@@ -170,6 +178,15 @@ class GroupForm extends Component {
                   style={{width: '100%'}}
                 />
                 <DisplayMap lat={this.state.loc.lat} lng={this.state.loc.lng} />
+                <p>Search Radius: {this.state.radius}mi.</p>
+                <Slider
+                  min={1}
+                  max={50}
+                  defaultValue={5}
+                  style={{margin: '0 10px 0 10px'}}
+                  onChange={this.changeRadius}
+                  step={1}
+                />
               </div>
               {this.renderStepActions(1)}
             </StepContent>
