@@ -11,6 +11,8 @@ import {
   StepContent,
 } from 'material-ui/Stepper';
 import Slider from 'material-ui/Slider';
+import Avatar from 'material-ui/Avatar';
+import FontIcon from 'material-ui/FontIcon';
 
 // React components
 import DisplayMap from './DisplayMap'
@@ -69,7 +71,7 @@ class GroupForm extends Component {
     var {stepIndex} = this.state
     this.setState({
       stepIndex: stepIndex + 1,
-      finished: stepIndex <= 2,
+      finished: stepIndex <= 3,
       loc: this.state.loc
     })
   }
@@ -114,13 +116,19 @@ class GroupForm extends Component {
     })
   }
 
+  toggleDrawer = () => {
+    this.setState({
+      drawer: !this.state.drawer
+    })
+  }
+
   renderStepActions(step) {
     const {stepIndex} = this.state;
 
     return (
       <div style={{margin: '12px 0', padding: '10px 0 0 0', borderTop: '1px solid lightgray'}}>
         <RaisedButton
-          label={stepIndex === 2 ? 'Finish' : 'Next'}
+          label={stepIndex === 3 ? 'Finish' : 'Next'}
           primary={true}
           onClick={this.handleNext}
           style={{marginRight: 12}}
@@ -194,8 +202,15 @@ class GroupForm extends Component {
           <Step>
             <StepLabel>Add options</StepLabel>
             <StepContent>
-
+              <FontIcon className="material-icons">face</FontIcon>
               {this.renderStepActions(2)}
+            </StepContent>
+          </Step>
+          <Step>
+            <StepLabel>Invite friends</StepLabel>
+            <StepContent>
+
+              {this.renderStepActions(3)}
             </StepContent>
           </Step>
         </Stepper>
